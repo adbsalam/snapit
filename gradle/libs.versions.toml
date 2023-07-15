@@ -1,0 +1,41 @@
+[versions]
+android-gradle-plugin = "8.0.2"
+kotlin = "1.8.21"
+ksp = "1.8.21-1.0.11"
+kotlin-jvm = "1.6.10"
+paparazzi = "1.3.0"
+compose-activity = "1.4.0"
+compose-bom = "2023.03.00"
+compose-navigation = "2.5.1"
+compose-compiler = "1.4.7"
+junit = "4.13.2"
+junit-ui = "1.1.5"
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
+android-library = { id = "com.android.library", version.ref = "android-gradle-plugin" }
+android-kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-jvm" }
+java-library = { id = "java-library" }
+paparazzi = { id = "app.cash.paparazzi", version.ref = "paparazzi" }
+
+[libraries]
+google-ksp = { group = "com.google.devtools.ksp", name = "symbol-processing-api", version.ref = "ksp" }
+paparazzi = { group = "app.cash.paparazzi", name = "paparazzi", version.ref = "paparazzi" }
+compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
+compose-ui = { group = "androidx.compose.ui", name = "ui" }
+compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+compose-material-two = { group = "androidx.compose.material", name = "material" }
+compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "compose-activity" }
+compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
+compose-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+compose-junit = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+junit-ui = { group = "androidx.test.ext", name = "junit", version.ref = "junit-ui" }
+kotlin-poet-ksp = { group = "com.squareup", name = "kotlinpoet-ksp", version = "1.14.2" }
+kotlin-poet = { group = "com.squareup", name = "kotlinpoet", version = "1.14.2" }
+kotlin-std-libs = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
+lint-api = { group = "com.android.tools.lint", name = "lint-api", version = "31.2.0-alpha11" }

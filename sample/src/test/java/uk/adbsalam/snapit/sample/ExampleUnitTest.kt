@@ -1,4 +1,4 @@
-package uk.adbsalam.snapit
+package uk.adbsalam.snapit.sample
 
 import org.junit.Test
 
