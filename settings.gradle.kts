@@ -19,3 +19,4 @@ rootProject.name = "snapit"
 
 include(":app")
 include(":sample")
+include(":annotations")

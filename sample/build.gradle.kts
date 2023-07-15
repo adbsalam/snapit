@@ -28,6 +28,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":annotations"))
+
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.runtime)
     implementation(libs.compose.foundation)
