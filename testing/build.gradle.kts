@@ -1,12 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
-    alias(libs.plugins.kotlin.ksp)
-    alias(libs.plugins.paparazzi)
 }
 
 android {
-    namespace = "uk.adbsalam.snapit"
+    namespace = "com.adbsalam.testing"
     compileSdk = 33
 
     defaultConfig {
@@ -28,28 +26,11 @@ android {
     }
 }
 
-tasks.register("snapitGenerate"){
-    dependsOn("assembleDebug")
-    copy{
-        from("build/generated/ksp/debug/kotlin/com/adbsalam/snapit/")
-        into("src/test/java/uk/adbsalam/snapit/sample")
-        filter { line -> line.replace("//", "") }
-    }
-}
-
 dependencies {
-    implementation(project(":annotations"))
-    lintChecks(project(":lint"))
-    ksp(project(":ksp"))
-    testImplementation(project(":testing"))
-
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.runtime)
     implementation(libs.compose.foundation)
     implementation(libs.compose.ui)
-    implementation(libs.compose.material.two)
-    implementation(libs.compose.activity)
     implementation(libs.compose.ui.tooling.preview)
-    debugImplementation(libs.compose.ui.tooling)
-    implementation(libs.junit)
+    implementation(libs.paparazzi)
 }
