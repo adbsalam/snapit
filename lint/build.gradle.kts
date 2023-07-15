@@ -3,7 +3,6 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":annotations"))
     compileOnly(libs.kotlin.std.libs)
     compileOnly(libs.lint.api)
 }

@@ -29,6 +29,7 @@ android {
 
 dependencies {
     implementation(project(":annotations"))
+    lintChecks(project(":lint"))
 
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.runtime)
