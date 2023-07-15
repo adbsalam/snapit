@@ -2,9 +2,9 @@ package uk.adbsalam.snapit.ksp.codewriter
 
 import java.io.OutputStream
 
-const val PACKAGE_NAME = "com.adbsalam.snapit"
+const val PACKAGE_NAME = "uk.adbsalam.snapit"
 const val UNKNOWN_FILE = "UnknownFileName"
-const val PAPARAZZI_PACKAGE = "com.adbsalam.testing"
+const val PAPARAZZI_PACKAGE = "uk.adbsalam.snapit.testing"
 
 /**
  * Annotation type as created

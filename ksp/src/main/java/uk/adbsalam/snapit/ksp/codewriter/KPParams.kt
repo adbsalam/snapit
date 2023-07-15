@@ -1,9 +1,10 @@
-package uk.adbsalam.snapit.ksp.codewriter
+package com.adbsalam.processor.codewriter
 
 import com.google.devtools.ksp.symbol.KSAnnotation
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 import com.google.devtools.ksp.symbol.KSValueArgument
 import uk.adbsalam.snapit.annotations.SnapAnnotation
+import uk.adbsalam.snapit.annotations.SnapAnnotation.SNAP_IT
 
 /**
  * @param function function to be processed
@@ -14,7 +15,7 @@ internal fun requirePreviewContext(
     function: KSFunctionDeclaration,
 ): Boolean {
     val annotation: KSAnnotation = function.annotations.first {
-        it.shortName.asString() == SnapAnnotation.SNAP_IT.annotation
+        it.shortName.asString() == SNAP_IT.annotation
     }
 
     val tagArg: KSValueArgument =
@@ -33,7 +34,7 @@ internal fun isScreenComponent(
 ): Boolean {
 
     val annotation: KSAnnotation = function.annotations.first {
-        it.shortName.asString() == SnapAnnotation.SNAP_IT.annotation
+        it.shortName.asString() == SNAP_IT.annotation
     }
 
     val tagArg: KSValueArgument =

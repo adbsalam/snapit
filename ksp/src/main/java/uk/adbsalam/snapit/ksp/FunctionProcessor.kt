@@ -1,7 +1,7 @@
 package uk.adbsalam.snapit.ksp
 
 import uk.adbsalam.snapit.ksp.codewriter.AnnotationType
-import uk.adbsalam.snapit.ksp.codewriter.isScreenComponent
+import com.adbsalam.processor.codewriter.isScreenComponent
 import uk.adbsalam.snapit.ksp.codewriter.processSymbols
 import com.google.devtools.ksp.processing.CodeGenerator
 import com.google.devtools.ksp.processing.KSPLogger

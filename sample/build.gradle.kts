@@ -31,8 +31,8 @@ android {
 tasks.register("snapitGenerate"){
     dependsOn("assembleDebug")
     copy{
-        from("build/generated/ksp/debug/kotlin/com/adbsalam/snapit/")
-        into("src/test/java/uk/adbsalam/snapit/sample")
+        from("build/generated/ksp/debug/kotlin/uk/adbsalam/snapit/")
+        into("src/test/java/uk/adbsalam/snapit/sample/")
         filter { line -> line.replace("//", "") }
     }
 }

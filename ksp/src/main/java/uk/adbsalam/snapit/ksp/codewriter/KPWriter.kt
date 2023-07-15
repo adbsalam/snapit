@@ -1,5 +1,6 @@
 package uk.adbsalam.snapit.ksp.codewriter
 
+import com.adbsalam.processor.codewriter.requirePreviewContext
 import com.google.devtools.ksp.processing.CodeGenerator
 import com.google.devtools.ksp.processing.Dependencies
 import com.google.devtools.ksp.processing.Resolver
