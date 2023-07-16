@@ -8,6 +8,14 @@
 ## Features
 
 Snapit is a powerful tool designed to automate the generation of Paparazzi tests by simple adding ```@Snapit``` Annotation on ```@Preview``` Functions, significantly reducing the time and resources required for creating snapshot tests. It leverages the ```@Preview``` Composables feature from the codebase, making it easy to implement and utilize. With Snapit, you can streamline your testing process and ensure the quality and reliability of your code.
+
+## Includes
+- ```@SnapIt``` Annotation
+- ```Snapit Lint``` Lint checks to help implementation
+- ```ksp``` to allow test file generation
+- ```Paparazzi Testing Utility``` to implement Paparazzi 
+
+
 ## Implementation
 
 Apply [Snapit-Gradle Plugin(Pending Release)](https://github.com/MuhammadAbdulSalam/snapit-plugin) plugin to your module
