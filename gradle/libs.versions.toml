@@ -19,6 +19,7 @@ kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-jvm" }
 java-library = { id = "java-library" }
 paparazzi = { id = "app.cash.paparazzi", version.ref = "paparazzi" }
+maven-publish = { id = "com.vanniktech.maven.publish", version = "0.25.1" }
 
 [libraries]
 google-ksp = { group = "com.google.devtools.ksp", name = "symbol-processing-api", version.ref = "ksp" }
