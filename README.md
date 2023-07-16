@@ -31,7 +31,7 @@ plugins {
 In your ```build.gradle.kts``` set snap test package location to generate tests at.
 ```kotlin
 snapIt {
-   testDir("uk.adbsalam.snapit")
+   testDir("uk/adbsalam/snapit")
 }
 ```
 
