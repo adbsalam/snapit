@@ -1,4 +1,4 @@
-package com.adbsalam.snapit_lint
+package uk.adbsalam.snapit.lint
 
 import com.android.tools.lint.client.api.UElementHandler
 import com.android.tools.lint.detector.api.Category
@@ -10,7 +10,6 @@ import com.android.tools.lint.detector.api.Scope
 import com.android.tools.lint.detector.api.Severity
 import org.jetbrains.uast.UElement
 import org.jetbrains.uast.UMethod
-import uk.adbsalam.snapit.lint.NodeVisitor
 
 /**
  * Create a SnapIt Issue to add for Linter

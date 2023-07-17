@@ -28,3 +28,10 @@ internal data class PrivateModifierNotAllowed(val annotation: String) : LintMess
     msg = """function annotated with @$annotation cannot be private
         @$annotation does not accept private functions, Refactor function or remove annotation""".trimMargin()
 )
+
+/**
+ * No warning issued
+ */
+internal object NoWarning : LintMessage(
+    msg = "No warnings."
+)

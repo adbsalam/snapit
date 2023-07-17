@@ -6,6 +6,9 @@ plugins {
 dependencies {
     compileOnly(libs.kotlin.std.libs)
     compileOnly(libs.lint.api)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.lint.test)
 }
 
 java {

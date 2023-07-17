@@ -22,14 +22,15 @@ const val COMPOSABLE = "androidx.compose.runtime.Composable"
  * Return annotation name with package name
  */
 internal fun String.byPackage() = PACKAGE_NAME + this
+
 /**
  * @return true if method contains a SnapIt annotation
  */
 internal fun UMethod.hasSnapIt(
 ): Boolean {
     return this.annotations.firstOrNull {
-        println("---------------" + it.qualifiedName)
         it.qualifiedName == SNAP_IT.byPackage()
+                || it.qualifiedName == SNAP_IT
     } != null
 }
 
@@ -39,6 +40,7 @@ internal fun UMethod.hasSnapIt(
 internal fun UMethod.isComposable(): Boolean {
     return this.annotations.firstOrNull {
         it.qualifiedName == COMPOSABLE
+                || it.qualifiedName == "Composable"
     } != null
 }
 
