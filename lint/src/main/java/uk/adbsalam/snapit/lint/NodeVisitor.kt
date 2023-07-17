@@ -2,7 +2,7 @@ package uk.adbsalam.snapit.lint
 
 import uk.adbsalam.snapit.lint.helper.errors
 import uk.adbsalam.snapit.lint.helper.hasSnapIt
-import com.adbsalam.snapit_lint.SnapItIssues.ISSUE
+import uk.adbsalam.snapit.lint.SnapItIssues.ISSUE
 import com.android.tools.lint.client.api.UElementHandler
 import com.android.tools.lint.detector.api.JavaContext
 import org.jetbrains.uast.UMethod
