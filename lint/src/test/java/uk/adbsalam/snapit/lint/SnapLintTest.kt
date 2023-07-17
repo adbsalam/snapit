@@ -18,6 +18,22 @@ class SnapLintTest {
     }
 
     @Test
+    fun `when function without @SnapIt annotation, should not show any warnings`() {
+        validateFunction(
+            function = functionNoSnapAnnotation,
+            warning = NoWarning
+        )
+    }
+
+    @Test
+    fun `when function with 0 annotation, should not show any warnings`() {
+        validateFunction(
+            function = functionNoAnnotation,
+            warning = NoWarning
+        )
+    }
+
+    @Test
     fun `when private modifier added to function, show correct warning`() {
         validateFunction(
             function = functionPrivateErr,
@@ -34,7 +50,7 @@ class SnapLintTest {
     }
 
     @Test
-    fun `when function wihtout @Compose annotation, should, show correct warning`() {
+    fun `when function wihtout @Compose annotation, should show correct warning`() {
         validateFunction(
             function = functionNoCompose,
             warning = ComposableRequiredMsg(SNAP_IT)
