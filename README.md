@@ -150,6 +150,8 @@ This will generate 2 Files.
  }
 ```
 
+## Record Tests 
+
 Run task to generate snapshots
 ```
 ./gradlew :module:snapitrecord
@@ -157,11 +159,11 @@ Run task to generate snapshots
 
 This will generate following SnapShots for this example code
 
-## Component
+### Component
 ![Component](https://github.com/MuhammadAbdulSalam/snapit/blob/develop/sample/src/test/snapshots/images/uk.adbsalam.snapit.sample_ExampleScreenComponentTest_examplePreviewSnapTest.png)
 
 
-## Screen
+### Screen
 ![Screen](https://github.com/MuhammadAbdulSalam/snapit/blob/develop/sample/src/test/snapshots/images/uk.adbsalam.snapit.sample_ExampleScreenScreenTest_when%20in%20preview%2C%20should%20render%20correctly.png)
 
 
