@@ -18,7 +18,7 @@ Snapit is a powerful tool designed to automate the generation of Paparazzi tests
 
 ## Implementation
 
-Apply [Snapit-Gradle Plugin(Pending Release)](https://github.com/MuhammadAbdulSalam/snapit-plugin) plugin to your module
+Apply [Snapit-Gradle Plugin](https://plugins.gradle.org/plugin/uk.adbsalam.snapit) plugin to your module. [GithubRepo](https://github.com/MuhammadAbdulSalam/snapit-plugin)
 
 In your ```build.gradle.kts``` apply plugin
 
