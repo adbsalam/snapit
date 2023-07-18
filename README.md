@@ -1,7 +1,8 @@
 
 # SnapIt
 
-[SnapIt ](https://central.sonatype.com/namespace/uk.adbsalam.snapit) auto test generation for [Paparazzi Compose](https://github.com/cashapp/paparazzi)
+[SnapIt](https://central.sonatype.com/namespace/uk.adbsalam.snapit) auto test generation for [Paparazzi Compose](https://github.com/cashapp/paparazzi)
+
 
 ![Maven Central](https://img.shields.io/badge/maven_central-1.0.2-blue)
 
