@@ -25,6 +25,7 @@ In your ```build.gradle.kts``` apply plugin
 
 ```kotlin
 plugins {
+  id("com.google.devtools.ksp") version "1.9.0-1.0.11" // required to run KSP
    id("uk.adbsalam.snapit") version "<LATEST-VERSION>"
 }
 ```
