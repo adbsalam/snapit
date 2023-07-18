@@ -3,7 +3,7 @@
 
 [SnapIt ](https://central.sonatype.com/namespace/uk.adbsalam.snapit) auto test generation for [Paparazzi Compose](https://github.com/cashapp/paparazzi)
 
-![Maven Central](https://img.shields.io/badge/maven_central-v1.0.2-blue)
+![Maven Central](https://img.shields.io/badge/maven_central-1.0.2-blue)
 
 ## Features
 
@@ -27,6 +27,24 @@ plugins {
    id("uk.adbsalam.snapit") version "<LATEST-VERSION>"
 }
 ```
+
+OR Use Legacy 
+```
+buildscript {
+  repositories {
+    maven {
+      url = uri("https://plugins.gradle.org/m2/")
+    }
+  }
+  dependencies {
+    classpath("uk.adbsalam.snapit:snapit-plugin:1.0.2")
+  }
+}
+
+apply(plugin = "uk.adbsalam.snapit")
+
+```
+
 
 In your ```build.gradle.kts``` set snap test package location to generate tests at.
 ```kotlin
@@ -76,7 +94,7 @@ fun ExamplePreview2() {
 ```
 Run Task to genenrate test file
 
-```./gradlew :module:SnapItGenerate```
+```./gradlew :module:snapitgenerate```
 
 This will generate 2 Files.
 - ```ExampleScreenComponentTest.kt``` to generate test for a component with no
@@ -132,9 +150,26 @@ This will generate 2 Files.
  }
 ```
 
+Run task to generate snapshots
+```
+./gradlew :module:snapitrecord
+```
+
+This will generate following SnapShots for this example code
+
+## Component
+![Component](https://github.com/MuhammadAbdulSalam/snapit/blob/develop/sample/src/test/snapshots/images/uk.adbsalam.snapit.sample_ExampleScreenComponentTest_examplePreviewSnapTest.png)
 
 
+## Screen
+![Screen](https://github.com/MuhammadAbdulSalam/snapit/blob/develop/sample/src/test/snapshots/images/uk.adbsalam.snapit.sample_ExampleScreenScreenTest_when%20in%20preview%2C%20should%20render%20correctly.png)
 
+
+## Verification
+Run task to verify snapshot tests
+```
+./gradlew :module:snapitverify
+```
 
 
 ## Acknowledgements
