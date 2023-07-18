@@ -50,9 +50,13 @@ apply(plugin = "uk.adbsalam.snapit")
 In your ```build.gradle.kts``` set snap test package location to generate tests at.
 ```kotlin
 snapIt {
-   testDir("uk/adbsalam/snapit")
+  testDir = "src/kotlin/testuk/adbsalam/snapit"
+  flavor = "testFlavour" 
 }
 ```
+
+``testDir`` Full directory of current unit test location
+```flavor``` Name of current flavour, if your app do not have multiple flavours then set value to "debug". Release flavours are not allowed in SnapIt
 
 This will allow usage of ```@SnapIt``` in code and create following gradle tasks
 

@@ -31,7 +31,8 @@ android {
 }
 
 snapIt {
-    testDir("uk/adbsalam/snapit/sample")
+    testDir = "src/test/java/uk/adbsalam/snapit/sample"
+    flavor = "debug"
 }
 
 dependencies {
