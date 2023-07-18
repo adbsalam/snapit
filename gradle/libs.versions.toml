@@ -21,6 +21,7 @@ java-library = { id = "java-library" }
 paparazzi = { id = "app.cash.paparazzi", version.ref = "paparazzi" }
 maven-publish = { id = "com.vanniktech.maven.publish", version = "0.25.1" }
 kover = {id = "org.jetbrains.kotlinx.kover", version= "0.7.2"}
+snapit = { id = "uk.adbsalam.snapit", version = "1.0.2" }
 
 [libraries]
 google-ksp = { group = "com.google.devtools.ksp", name = "symbol-processing-api", version.ref = "ksp" }

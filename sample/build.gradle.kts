@@ -1,8 +1,11 @@
+import uk.adbsalam.snapit.plugin.snapIt
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
     alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.paparazzi)
+    alias(libs.plugins.snapit)
 }
 
 android {
@@ -28,21 +31,11 @@ android {
     }
 }
 
-tasks.register("snapitGenerate"){
-    dependsOn("assembleDebug")
-    copy{
-        from("build/generated/ksp/debug/kotlin/uk/adbsalam/snapit/")
-        into("src/test/java/uk/adbsalam/snapit/sample/")
-        filter { line -> line.replace("//", "") }
-    }
+snapIt {
+    testDir("uk/adbsalam/snapit/sample")
 }
 
 dependencies {
-    implementation(project(":annotations"))
-    lintChecks(project(":lint"))
-    ksp(project(":ksp"))
-    testImplementation(project(":testing"))
-
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.runtime)
     implementation(libs.compose.foundation)
