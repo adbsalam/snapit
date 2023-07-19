@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.android.kotlin)
     alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.snapit)
+    alias(libs.plugins.paparazzi)
 }
 
 android {
