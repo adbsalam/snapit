@@ -19,18 +19,21 @@ Snapit is a powerful tool designed to automate the generation of Paparazzi tests
 
 ## Implementation
 
-Apply [Snapit-Gradle Plugin](https://plugins.gradle.org/plugin/uk.adbsalam.snapit) plugin to your module. [GithubRepo](https://github.com/MuhammadAbdulSalam/snapit-plugin)
+Apply [Snapit-Gradle Plugin](https://plugins.gradle.org/plugin/uk.adbsalam.snapit) plugin to your module. [GithubRepo](https://github.com/MuhammadAbdulSalam/snapit-plugin).
 
 In your ```build.gradle.kts``` apply plugin
 
+Kotlin DSL
+
 ```kotlin
 plugins {
-  id("com.google.devtools.ksp") version "1.9.0-1.0.11" // required to run KSP
-   id("uk.adbsalam.snapit") version "<LATEST-VERSION>"
+  id ("app.cash.paparazzi") version "<LATEST-VERSION>"
+  id ("uk.adbsalam.snapit") version "<LATEST-VERSION>"
 }
 ```
 
-OR Use Legacy 
+OR Using plugin application:
+
 ```
 buildscript {
   repositories {
@@ -39,11 +42,13 @@ buildscript {
     }
   }
   dependencies {
-    classpath("uk.adbsalam.snapit:snapit-plugin:1.0.2")
+    classpath("uk.adbsalam.snapit:snapit-plugin:<LATEST_VERSION>")
+    classpath ("app.cash.paparazzi:paparazzi-gradle-plugin:<LATEST_VERSION>")
   }
 }
 
 apply(plugin = "uk.adbsalam.snapit")
+apply(plugin = "app.cash.paparazzi")
 
 ```
 
@@ -66,7 +71,6 @@ Now In Compose files you can make use of annotation ```@SnapIt``` as following
 - ```./gradlew :module:SnapItGenerate``` to generate test files
 - ```./gradlew :module:SnapItRecord``` to record Paparazzi Snapshot tests
 - ```./gradlew :module:SnapItVerify``` to run/verify generated tests
-
 
 
 
