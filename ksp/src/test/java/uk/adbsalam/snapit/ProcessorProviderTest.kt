@@ -6,8 +6,6 @@ import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.mockito.Mockito
-import org.mockito.kotlin.stub
 import uk.adbsalam.snapit.ksp.FunctionProcessor
 import uk.adbsalam.snapit.ksp.FunctionProcessorProvider
 
@@ -24,6 +22,5 @@ class ProcessorProviderTest {
 
         Assert.assertTrue(provider is FunctionProcessor)
     }
-
 
 }
