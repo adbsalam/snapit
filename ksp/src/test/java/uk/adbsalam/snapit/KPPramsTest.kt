@@ -63,5 +63,4 @@ class KPPramsTest {
         Assert.assertEquals(result, false)
     }
 
-
 }
