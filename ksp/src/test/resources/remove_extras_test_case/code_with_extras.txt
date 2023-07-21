@@ -1,0 +1,9 @@
+package none
+
+ import kotlin.Unit
+
+@RunWith(JUnit4::class)
+class Test(){
+    @Test
+    public fun testFun() : Unit {}
+}

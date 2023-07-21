@@ -42,3 +42,5 @@ kotlin-poet = { group = "com.squareup", name = "kotlinpoet", version = "1.14.2" 
 kotlin-std-libs = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 lint-api = { group = "com.android.tools.lint", name = "lint-api", version.ref = "lint" }
 lint-test = { group = "com.android.tools.lint", name = "lint-tests", version.ref = "lint" }
+mockk = {group = "io.mockk", name = "mockk", version = "1.13.5"}
+mockito = {group = "org.mockito.kotlin", name = "mockito-kotlin", version = "5.0.0"}

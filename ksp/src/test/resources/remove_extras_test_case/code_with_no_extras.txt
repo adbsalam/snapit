@@ -1,0 +1,8 @@
+
+
+
+@RunWith(JUnit4::class)
+class Test(){
+    @Test
+    fun testFun()  {}
+}

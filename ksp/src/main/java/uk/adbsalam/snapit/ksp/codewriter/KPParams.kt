@@ -1,9 +1,8 @@
-package com.adbsalam.processor.codewriter
+package uk.adbsalam.snapit.ksp.codewriter
 
 import com.google.devtools.ksp.symbol.KSAnnotation
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 import com.google.devtools.ksp.symbol.KSValueArgument
-import uk.adbsalam.snapit.annotations.SnapAnnotation
 import uk.adbsalam.snapit.annotations.SnapAnnotation.SNAP_IT
 
 /**
