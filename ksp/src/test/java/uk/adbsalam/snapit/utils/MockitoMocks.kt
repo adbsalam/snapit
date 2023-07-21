@@ -40,11 +40,13 @@ internal fun mockSingleFunction(
     annotationNameValue: String = "",
     funName: String,
     isPreview: Boolean = false,
-    ): KSFunctionDeclaration {
+    isScreen: Boolean = false
+): KSFunctionDeclaration {
     return annotatedFunction(
         annotationNameValue,
         funName,
-        isPreview
+        isPreview,
+        isScreen
     )
 }
 
@@ -54,7 +56,8 @@ internal fun mockSingleFunction(
 private fun annotatedFunction(
     annotationNameValue: String,
     funName: String,
-    isPreview: Boolean = false
+    isPreview: Boolean = false,
+    isScreen: Boolean = false
 ): KSFunctionDeclaration {
 
     val testPackageName = "uk.co.test.name"
@@ -76,6 +79,10 @@ private fun annotatedFunction(
         on { getShortName() } doReturn "preview"
     }
 
+    val screenParam = Mockito.mock(KSName::class.java).stub {
+        on { getShortName() } doReturn "isScreen"
+    }
+
     val annotationName = Mockito.mock(KSName::class.java).stub {
         on { getShortName() } doReturn "SnapIt"
     }
@@ -92,10 +99,16 @@ private fun annotatedFunction(
         on { value } doReturn isPreview
     }
 
+    val ksScreenArgument = Mockito.mock(KSValueArgument::class.java).stub {
+        on { name } doReturn screenParam
+        on { name?.asString() } doReturn "isScreen"
+        on { value } doReturn isScreen
+    }
+
     val ksAnnotation = Mockito.mock(KSAnnotation::class.java).stub {
         on { shortName } doReturn annotationName
         on { shortName.asString() } doReturn "SnapIt"
-        on { arguments } doReturn listOf(ksNameArgument, ksPreviewArgument)
+        on { arguments } doReturn listOf(ksNameArgument, ksPreviewArgument, ksScreenArgument)
     }
 
     val ksFunctionMock = Mockito.mock(KSFunctionDeclaration::class.java).stub {
