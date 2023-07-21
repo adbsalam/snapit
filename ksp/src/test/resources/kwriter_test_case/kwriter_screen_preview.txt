@@ -1,0 +1,42 @@
+package uk.co.test.name
+
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.platform.LocalInspectionMode
+import app.cash.paparazzi.Paparazzi
+import org.junit.Rule
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.junit.runners.JUnit4
+import uk.adbsalam.snapit.testing.captureScreenshot
+import uk.adbsalam.snapit.testing.forScreen
+
+@RunWith(JUnit4::class)
+public class TestExample {
+  @get:Rule
+  public val paparazzi: Paparazzi = Paparazzi.forScreen()
+
+  @Test
+  public fun examplePreviewOneSnapTest() {
+    paparazzi.captureScreenshot {
+        CompositionLocalProvider(LocalInspectionMode provides true) {
+            ExamplePreviewOne()
+        }
+    }
+  }
+
+  @Test
+  public fun examplePreviewTwoSnapTest() {
+    paparazzi.captureScreenshot {
+        ExamplePreviewTwo()
+    }
+  }
+
+  @Test
+  public fun examplePreviewThreeSnapTest() {
+    paparazzi.captureScreenshot {
+        CompositionLocalProvider(LocalInspectionMode provides true) {
+            ExamplePreviewThree()
+        }
+    }
+  }
+}

@@ -66,7 +66,7 @@ fun processSymbols(
  *
  * @return returns the new generated file
  */
-private fun codeFile(
+internal fun codeFile(
     previewImports: Boolean,
     fileName: String,
     symbols: Sequence<KSFunctionDeclaration>,
