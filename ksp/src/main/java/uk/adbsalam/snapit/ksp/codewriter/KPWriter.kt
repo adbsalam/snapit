@@ -1,6 +1,5 @@
 package uk.adbsalam.snapit.ksp.codewriter
 
-import com.adbsalam.processor.codewriter.requirePreviewContext
 import com.google.devtools.ksp.processing.CodeGenerator
 import com.google.devtools.ksp.processing.Dependencies
 import com.google.devtools.ksp.processing.Resolver
@@ -67,7 +66,7 @@ fun processSymbols(
  *
  * @return returns the new generated file
  */
-private fun codeFile(
+internal fun codeFile(
     previewImports: Boolean,
     fileName: String,
     symbols: Sequence<KSFunctionDeclaration>,
@@ -103,7 +102,7 @@ private fun codeFile(
  *
  * @return returns generated code in commented form
  */
-private fun commentedFile(
+internal fun commentedFile(
     generatedCode: String
 ): String {
     return FileSpec

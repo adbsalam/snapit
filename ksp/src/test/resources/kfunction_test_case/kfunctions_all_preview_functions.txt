@@ -1,0 +1,27 @@
+@org.junit.Test
+public fun examplePreviewOneSnapTest() {
+  paparazzi.captureScreenshot {
+      CompositionLocalProvider(LocalInspectionMode provides true) {
+          ExamplePreviewOne()
+      }
+  }
+}
+
+@org.junit.Test
+public fun examplePreviewTwoSnapTest() {
+  paparazzi.captureScreenshot {
+      CompositionLocalProvider(LocalInspectionMode provides true) {
+          ExamplePreviewTwo()
+      }
+  }
+}
+
+@org.junit.Test
+public fun examplePreviewThreeSnapTest() {
+  paparazzi.captureScreenshot {
+      CompositionLocalProvider(LocalInspectionMode provides true) {
+          ExamplePreviewThree()
+      }
+  }
+}
+

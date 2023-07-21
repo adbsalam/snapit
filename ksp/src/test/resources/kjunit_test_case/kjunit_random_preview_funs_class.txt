@@ -1,0 +1,30 @@
+@org.junit.runner.RunWith(JUnit4::class)
+public class TestFile {
+  @get:org.junit.Rule
+  public val paparazzi: app.cash.paparazzi.Paparazzi = Paparazzi.forComponent()
+
+  @org.junit.Test
+  public fun examplePreviewOneSnapTest() {
+    paparazzi.captureScreenshot {
+        CompositionLocalProvider(LocalInspectionMode provides true) {
+            ExamplePreviewOne()
+        }
+    }
+  }
+
+  @org.junit.Test
+  public fun examplePreviewTwoSnapTest() {
+    paparazzi.captureScreenshot {
+        ExamplePreviewTwo()
+    }
+  }
+
+  @org.junit.Test
+  public fun examplePreviewThreeSnapTest() {
+    paparazzi.captureScreenshot {
+        CompositionLocalProvider(LocalInspectionMode provides true) {
+            ExamplePreviewThree()
+        }
+    }
+  }
+}

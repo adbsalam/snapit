@@ -1,0 +1,8 @@
+@org.junit.Test
+public fun `when some test, should run test`() {
+  paparazzi.captureScreenshot {
+      CompositionLocalProvider(LocalInspectionMode provides true) {
+          ExamplePreview()
+      }
+  }
+}

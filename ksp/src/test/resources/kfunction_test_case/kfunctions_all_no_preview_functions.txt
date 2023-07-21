@@ -1,0 +1,21 @@
+@org.junit.Test
+public fun examplePreviewOneSnapTest() {
+  paparazzi.captureScreenshot {
+      ExamplePreviewOne()
+  }
+}
+
+@org.junit.Test
+public fun examplePreviewTwoSnapTest() {
+  paparazzi.captureScreenshot {
+      ExamplePreviewTwo()
+  }
+}
+
+@org.junit.Test
+public fun examplePreviewThreeSnapTest() {
+  paparazzi.captureScreenshot {
+      ExamplePreviewThree()
+  }
+}
+

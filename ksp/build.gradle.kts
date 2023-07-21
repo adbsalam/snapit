@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.maven.publish)
+    alias(libs.plugins.kover)
 }
 
 java {
@@ -19,4 +20,8 @@ dependencies {
     implementation(libs.paparazzi)
     implementation(libs.kotlin.poet.ksp)
     implementation(libs.kotlin.poet)
+
+    testImplementation(kotlin("test"))
+    testImplementation(libs.mockk)
+    testImplementation(libs.mockito)
 }
