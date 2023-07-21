@@ -1,6 +1,5 @@
 package uk.adbsalam.snapit
 
-import com.squareup.kotlinpoet.FunSpec
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -10,40 +9,35 @@ import uk.adbsalam.snapit.ksp.codewriter.nonPreviewFuncSpec
 import uk.adbsalam.snapit.ksp.codewriter.previewFuncSpec
 import uk.adbsalam.snapit.ksp.codewriter.snapFunctions
 import uk.adbsalam.snapit.utils.KPTest
+import uk.adbsalam.snapit.utils.MockType
 import uk.adbsalam.snapit.utils.joinFunctions
+import uk.adbsalam.snapit.utils.mockFunctions
+import uk.adbsalam.snapit.utils.mockSingleFunction
 
 @RunWith(JUnit4::class)
 class KPFunctionTest : KPTest("kfunction_test_case") {
 
     @Test
     fun `snapFunctions - when passed preview true functions - should create a list of preview functions`() {
-        val functions = sequenceOf(
-            annotatedFunction("", "ExamplePreviewOne", true),
-            annotatedFunction("", "ExamplePreviewTwo", true),
-            annotatedFunction("", "ExamplePreviewThree", true),
-        )
+        val functions = mockFunctions(MockType.ALL_PREVIEW)
         val snapFunctions = snapFunctions(functions)
-        var generatedFunctions = joinFunctions(snapFunctions)
+        val generatedFunctions = joinFunctions(snapFunctions)
         val actual = kspCodeFromFile("kfunctions_all_preview_functions")
         Assert.assertEquals(generatedFunctions, actual)
     }
 
     @Test
     fun `snapFunctions - when passed preview false functions - should create a list of preview functions`() {
-        val functions = sequenceOf(
-            annotatedFunction("", "ExamplePreviewOne", false),
-            annotatedFunction("", "ExamplePreviewTwo", false),
-            annotatedFunction("", "ExamplePreviewThree", false),
-        )
+        val functions = mockFunctions(MockType.NONE_PREVIEW)
         val snapFunctions = snapFunctions(functions)
-        var generatedFunctions = joinFunctions(snapFunctions)
+        val generatedFunctions = joinFunctions(snapFunctions)
         val actual = kspCodeFromFile("kfunctions_all_no_preview_functions")
         Assert.assertEquals(generatedFunctions, actual)
     }
 
     @Test
     fun `previewFuncSpec - when function with preview value set to true - should generate function correctly`() {
-        val mockFunction = annotatedFunction("when some test, should run test", "ExamplePreview")
+        val mockFunction = mockSingleFunction("when some test, should run test", "ExamplePreview")
 
         val previewFunction = previewFuncSpec(mockFunction).toString()
         val actual = kspCodeFromFile("kfunction_preview_function")
@@ -52,7 +46,7 @@ class KPFunctionTest : KPTest("kfunction_test_case") {
 
     @Test
     fun `previewFuncSpec - when function with preview value set to false - should generate function correctly`() {
-        val mockFunction = annotatedFunction("when some test, should run test", "ExamplePreview")
+        val mockFunction = mockSingleFunction("when some test, should run test", "ExamplePreview")
 
         val nonPreviewFunction = nonPreviewFuncSpec(mockFunction).toString()
         val actual = kspCodeFromFile("kfunction_no_preview_function")
@@ -62,13 +56,13 @@ class KPFunctionTest : KPTest("kfunction_test_case") {
     @Test
     fun `getMethodName - when name param added to annotation, should generate function with correct name`() {
         val funWithAnnotationNameParamValueSet =
-            annotatedFunction(
+            mockSingleFunction(
                 annotationNameValue = "when some test, should run test",
                 funName = "ExamplePreview"
             )
 
         val funWithAnnotationNameParamValueNotSet =
-            annotatedFunction(
+            mockSingleFunction(
                 annotationNameValue = "",
                 funName = "ExamplePreview"
             )

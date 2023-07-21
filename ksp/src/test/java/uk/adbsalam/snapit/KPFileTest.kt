@@ -7,6 +7,8 @@ import org.junit.runners.JUnit4
 import uk.adbsalam.snapit.ksp.codewriter.AnnotationType
 import uk.adbsalam.snapit.ksp.codewriter.kFile
 import uk.adbsalam.snapit.utils.KPTest
+import uk.adbsalam.snapit.utils.MockType
+import uk.adbsalam.snapit.utils.mockFunctions
 
 @RunWith(JUnit4::class)
 class KPFileTest : KPTest("kfile_test_case") {
@@ -16,7 +18,7 @@ class KPFileTest : KPTest("kfile_test_case") {
 
         val file = kFile(
             previewImports = false,
-            functions = mockKsFunctionDeclarations,
+            functions = mockFunctions(MockType.RANDOM),
             fileName = "TestFileComponentTest",
             annotation = AnnotationType.COMPONENT
         ).build().toString()
@@ -31,7 +33,7 @@ class KPFileTest : KPTest("kfile_test_case") {
 
         val file = kFile(
             previewImports = true,
-            functions = mockKsFunctionDeclarations,
+            functions = mockFunctions(MockType.RANDOM),
             fileName = "TestFileComponentTest",
             annotation = AnnotationType.COMPONENT
         ).build().toString()
@@ -46,7 +48,7 @@ class KPFileTest : KPTest("kfile_test_case") {
 
         val file = kFile(
             previewImports = false,
-            functions = mockKsFunctionDeclarations,
+            functions = mockFunctions(MockType.RANDOM),
             fileName = "TestFileComponentTest",
             annotation = AnnotationType.SCREEN
         ).build().toString()
@@ -61,7 +63,7 @@ class KPFileTest : KPTest("kfile_test_case") {
 
         val file = kFile(
             previewImports = true,
-            functions = mockKsFunctionDeclarations,
+            functions = mockFunctions(MockType.RANDOM),
             fileName = "TestFileComponentTest",
             annotation = AnnotationType.SCREEN
         ).build().toString()
