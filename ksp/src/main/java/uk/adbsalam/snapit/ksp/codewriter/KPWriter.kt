@@ -102,7 +102,7 @@ internal fun codeFile(
  *
  * @return returns generated code in commented form
  */
-private fun commentedFile(
+internal fun commentedFile(
     generatedCode: String
 ): String {
     return FileSpec
