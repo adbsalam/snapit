@@ -9,10 +9,40 @@ import org.mockito.Mockito
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.stub
 
-enum class MockType {
+internal enum class MockType {
     ALL_PREVIEW, NONE_PREVIEW, RANDOM
 }
 
+/**
+ * @param annotationNameValue annotation param "name" value to be set
+ * @param funName function name to be set
+ * @param isPreview is preview param to be set to true or false
+ * @param isScreen isScreen param to be set to true or false
+ *
+ * This will help generate a single function for testing purposes
+ */
+internal fun mockSingleFunction(
+    annotationNameValue: String = "",
+    funName: String,
+    isPreview: Boolean = false,
+    isScreen: Boolean = false
+): KSFunctionDeclaration {
+    return annotatedFunction(
+        annotationNameValue,
+        funName,
+        isPreview,
+        isScreen
+    )
+}
+
+/**
+ * @param preview Mock type to generate code as
+ * if ALL_PREVIEW - functions are to be set with preview true
+ * if NONE_PREVIEW - functions are to be set with preview false
+ * if RANDOM - functions will be generates as random preview, in an order
+ *
+ * Ths will provide list of functions for testing of code generation and kotlin poet
+ */
 internal fun mockFunctions(
     preview: MockType,
 ): Sequence<KSFunctionDeclaration> {
@@ -35,22 +65,13 @@ internal fun mockFunctions(
     )
 }
 
-internal fun mockSingleFunction(
-    annotationNameValue: String = "",
-    funName: String,
-    isPreview: Boolean = false,
-    isScreen: Boolean = false
-): KSFunctionDeclaration {
-    return annotatedFunction(
-        annotationNameValue,
-        funName,
-        isPreview,
-        isScreen
-    )
-}
-
 /**
+ * @param annotationNameValue annotation param "name" value to be set
+ * @param funName function name to be set
+ * @param isPreview is preview param to be set to true or false
+ * @param isScreen isScreen param to be set to true or false
  *
+ * This will help generate a single function for testing purposes
  */
 private fun annotatedFunction(
     annotationNameValue: String,
@@ -76,7 +97,12 @@ private fun annotatedFunction(
     return ksFunctionMock
 }
 
-
+/**
+ * Create a mock file with test package name
+ *
+ * This is to be used by functions to provide its containing class and package names
+ * This is to be used by kotlin poet for naming purposes
+ */
 private fun mockFile(): KSFile {
     val testPackageName = "uk.co.test.name"
 
@@ -90,7 +116,12 @@ private fun mockFile(): KSFile {
     }
 }
 
-
+/**
+ * @param stringName name of param as string
+ * @param paramValue value of Type<T> to be set for annotation param
+ *
+ * this will set argument name and value to be used in annotation
+ */
 private fun <T> mockArg(
     stringName: String,
     paramValue: T
@@ -106,6 +137,13 @@ private fun <T> mockArg(
     }
 }
 
+/**
+ * @param paramName function name to be set
+ * @param isPreview is preview param to be set to true or false
+ * @param isScreen isScreen param to be set to true or false
+ *
+ * this will generate mock of annotation, along with its params to be tested
+ */
 private fun mockSnapAnnotation(
     paramName: String,
     isPreview: Boolean = false,
