@@ -9,7 +9,6 @@ import org.mockito.Mockito
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.stub
 
-
 enum class MockType {
     ALL_PREVIEW, NONE_PREVIEW, RANDOM
 }
@@ -60,62 +59,71 @@ private fun annotatedFunction(
     isScreen: Boolean = false
 ): KSFunctionDeclaration {
 
+    val file = mockFile()
+
+    val annotation = mockSnapAnnotation(
+        paramName = annotationNameValue,
+        isPreview = isPreview,
+        isScreen = isScreen
+    )
+
+    val ksFunctionMock = Mockito.mock(KSFunctionDeclaration::class.java).stub {
+        on { annotations } doReturn sequenceOf(annotation)
+        on { toString() } doReturn funName
+        on { containingFile } doReturn file
+    }
+
+    return ksFunctionMock
+}
+
+
+private fun mockFile(): KSFile {
     val testPackageName = "uk.co.test.name"
 
     val ksPackageName = Mockito.mock(KSName::class.java).stub {
         on { getShortName() } doReturn testPackageName
     }
 
-    val ksFile = Mockito.mock(KSFile::class.java).stub {
+    return Mockito.mock(KSFile::class.java).stub {
         on { packageName } doReturn ksPackageName
         on { packageName.asString() } doReturn testPackageName
     }
+}
 
-    val nameParam = Mockito.mock(KSName::class.java).stub {
-        on { getShortName() } doReturn "name"
-    }
 
-    val previewParam = Mockito.mock(KSName::class.java).stub {
-        on { getShortName() } doReturn "preview"
-    }
+private fun <T> mockArg(
+    stringName: String,
+    paramValue: T
+): KSValueArgument {
 
-    val screenParam = Mockito.mock(KSName::class.java).stub {
-        on { getShortName() } doReturn "isScreen"
+    val ksName = Mockito.mock(KSName::class.java).stub {
+        on { getShortName() } doReturn stringName
     }
+    return Mockito.mock(KSValueArgument::class.java).stub {
+        on { name } doReturn ksName
+        on { name?.asString() } doReturn stringName
+        on { value } doReturn paramValue
+    }
+}
+
+private fun mockSnapAnnotation(
+    paramName: String,
+    isPreview: Boolean = false,
+    isScreen: Boolean = false
+): KSAnnotation {
 
     val annotationName = Mockito.mock(KSName::class.java).stub {
         on { getShortName() } doReturn "SnapIt"
     }
 
-    val ksNameArgument = Mockito.mock(KSValueArgument::class.java).stub {
-        on { name } doReturn nameParam
-        on { name?.asString() } doReturn "name"
-        on { value } doReturn annotationNameValue
-    }
+    val nameArg = mockArg("name", paramName)
+    val previewArg = mockArg("preview", isPreview)
+    val isScreenArg = mockArg("isScreen", isScreen)
 
-    val ksPreviewArgument = Mockito.mock(KSValueArgument::class.java).stub {
-        on { name } doReturn previewParam
-        on { name?.asString() } doReturn "preview"
-        on { value } doReturn isPreview
-    }
-
-    val ksScreenArgument = Mockito.mock(KSValueArgument::class.java).stub {
-        on { name } doReturn screenParam
-        on { name?.asString() } doReturn "isScreen"
-        on { value } doReturn isScreen
-    }
-
-    val ksAnnotation = Mockito.mock(KSAnnotation::class.java).stub {
+    return Mockito.mock(KSAnnotation::class.java).stub {
         on { shortName } doReturn annotationName
         on { shortName.asString() } doReturn "SnapIt"
-        on { arguments } doReturn listOf(ksNameArgument, ksPreviewArgument, ksScreenArgument)
+        on { arguments } doReturn listOf(nameArg, previewArg, isScreenArg)
     }
 
-    val ksFunctionMock = Mockito.mock(KSFunctionDeclaration::class.java).stub {
-        on { annotations } doReturn sequenceOf(ksAnnotation)
-        on { toString() } doReturn funName
-        on { containingFile } doReturn ksFile
-    }
-
-    return ksFunctionMock
 }
