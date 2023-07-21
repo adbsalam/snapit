@@ -6,10 +6,10 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import uk.adbsalam.snapit.ksp.codewriter.AnnotationType
 import uk.adbsalam.snapit.ksp.codewriter.kFile
-import uk.adbsalam.snapit.utils.KspTest
+import uk.adbsalam.snapit.utils.KPTest
 
 @RunWith(JUnit4::class)
-class KFileTest : KspTest("kfile_test_case") {
+class KPFileTest : KPTest("kfile_test_case") {
 
     @Test
     fun `kFile - when component annotation - and no preview imports - should create correct file`() {

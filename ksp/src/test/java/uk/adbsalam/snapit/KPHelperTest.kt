@@ -7,11 +7,11 @@ import org.junit.runners.JUnit4
 import uk.adbsalam.snapit.ksp.codewriter.AnnotationType
 import uk.adbsalam.snapit.ksp.codewriter.getFileName
 import uk.adbsalam.snapit.ksp.codewriter.replaceExtras
-import uk.adbsalam.snapit.utils.KspTest
+import uk.adbsalam.snapit.utils.KPTest
 import kotlin.test.assertEquals
 
 @RunWith(JUnit4::class)
-class KspHelperTest : KspTest("remove_extras_test_case") {
+class KPHelperTest : KPTest("remove_extras_test_case") {
 
     @Test
     fun `when getFileName() is called, correct file name should return`() {
