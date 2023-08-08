@@ -1,0 +1,19 @@
+@org.junit.runner.RunWith(JUnit4::class)
+public class TestFile {
+  @get:org.junit.Rule
+  public val paparazzi: app.cash.paparazzi.Paparazzi = Paparazzi.forDarkComponent()
+
+  @org.junit.Test
+  public fun `when dark, should render`() {
+    paparazzi.captureDarkScreenshot {
+        darkFunTest()
+    }
+  }
+
+  @org.junit.Test
+  public fun `when dark, should render`() {
+    paparazzi.captureDarkScreenshot {
+        darkFunTest()
+    }
+  }
+}

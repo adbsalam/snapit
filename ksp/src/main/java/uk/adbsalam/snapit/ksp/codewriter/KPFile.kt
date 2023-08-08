@@ -27,8 +27,14 @@ internal fun kFile(
         .builder(packageName, fileName)
         .addImport(JUnit4::class, "")
         .addImport("app.cash.paparazzi", "Paparazzi")
-        .addImport(PAPARAZZI_PACKAGE, "captureScreenshot")
         .addImport(PAPARAZZI_PACKAGE, paparazziInstanceImport(annotation))
+
+    if(annotation == AnnotationType.DARK_SCREEN || annotation == AnnotationType.DARK_COMPONENT){
+        file.addImport(PAPARAZZI_PACKAGE, "captureDarkScreenshot")
+    }
+    else{
+        file.addImport(PAPARAZZI_PACKAGE, "captureScreenshot")
+    }
 
     if (previewImports) {
         file

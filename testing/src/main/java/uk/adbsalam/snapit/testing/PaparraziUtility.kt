@@ -39,11 +39,18 @@ fun Paparazzi.Companion.forDarkScreen() = Paparazzi(
 )
 
 fun Paparazzi.captureScreenshot(composable: @Composable () -> Unit) {
-    this.snapshot() {
-        Box(
-            modifier = Modifier.background(Color.White)
-        ) {
+    this.snapshot {
+        Box(modifier = Modifier.background(Color.White)) {
             composable()
         }
     }
 }
+
+fun Paparazzi.captureDarkScreenshot(composable: @Composable () -> Unit) {
+    this.snapshot {
+        Box(modifier = Modifier.background(Color.Unspecified)) {
+            composable()
+        }
+    }
+}
+
