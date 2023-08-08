@@ -17,15 +17,27 @@ class KPHelperTest : KPTest("remove_extras_test_case") {
     fun `when getFileName() is called, correct file name should return`() {
         val componentFileName = getFileName(
             file = "Test.kt",
-            annotation = AnnotationType.COMPONENT
+            annotation = AnnotationType.LIGHT_COMPONENT
         )
         Assert.assertEquals(componentFileName, "TestComponentTest")
 
         val screenFileName = getFileName(
             file = "Test.kt",
-            annotation = AnnotationType.SCREEN
+            annotation = AnnotationType.LIGHT_SCREEN
         )
         Assert.assertEquals(screenFileName, "TestScreenTest")
+
+        val darkComponentFileName = getFileName(
+            file = "Test.kt",
+            annotation = AnnotationType.DARK_COMPONENT
+        )
+        Assert.assertEquals(darkComponentFileName, "TestDarkComponentTest")
+
+        val darkScreenFileName = getFileName(
+            file = "Test.kt",
+            annotation = AnnotationType.DARK_SCREEN
+        )
+        Assert.assertEquals(darkScreenFileName, "TestDarkScreenTest")
     }
 
     @Test
