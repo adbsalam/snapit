@@ -29,6 +29,7 @@ android {
 
 mavenPublishing {
     signAllPublications()
+    description = "Testing Utility to for @SnapIt"
 }
 
 dependencies {

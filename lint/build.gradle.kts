@@ -19,6 +19,7 @@ java {
 
 mavenPublishing {
     signAllPublications()
+    description = "Lint for @SnapIt implementation to follow SnapIt Rules"
 }
 
 tasks.jar {

@@ -11,6 +11,7 @@ java {
 
 mavenPublishing {
     signAllPublications()
+    description = "Code gen module to generate code for @Snapit Annotations. This will generate JUnit tests"
 }
 
 dependencies {
