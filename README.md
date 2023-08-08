@@ -4,7 +4,7 @@
 [SnapIt](https://central.sonatype.com/namespace/uk.adbsalam.snapit) auto test generation for [Paparazzi Compose](https://github.com/cashapp/paparazzi)
 
 
-![Maven Central](https://img.shields.io/badge/maven_central-1.0.2-blue)
+![Maven Central](https://img.shields.io/badge/maven_central-1.0.3-blue)
 
 ## Features
 
@@ -72,7 +72,16 @@ Now In Compose files you can make use of annotation ```@SnapIt``` as following
 - ```./gradlew :module:SnapItRecord``` to record Paparazzi Snapshot tests
 - ```./gradlew :module:SnapItVerify``` to run/verify generated tests
 
+## Dark Mode Testing Support
+Dark mode testing support is added simply set ```isDark = true``` to ```@SnapIt``` an example is following
 
+```kotlin
+@Composable
+@SnapIt(isDark = true)
+fun ExampleCompose() {
+    Text(text = "Hello World")
+}
+```
 
 ## Usage/Examples
 
