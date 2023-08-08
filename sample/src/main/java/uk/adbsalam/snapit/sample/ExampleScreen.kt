@@ -27,3 +27,10 @@ fun ExamplePreview() {
 fun ExamplePreview2() {
     ExampleCompose()
 }
+
+@Composable
+@Preview
+@SnapIt(name = "when in preview, should render correctly", isDark = true)
+fun ExamplePreviewDarkComponent() {
+    ExampleCompose()
+}
