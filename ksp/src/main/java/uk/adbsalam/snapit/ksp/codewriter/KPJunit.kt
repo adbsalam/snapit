@@ -24,7 +24,7 @@ internal fun jUnitClass(
     annotation: AnnotationType
 ): TypeSpec {
 
-    val snapFunctions = snapFunctions(symbols)
+    val snapFunctions = snapFunctions(symbols, annotation)
 
     val runWith =
         AnnotationSpec.builder(RunWith::class).addMember("JUnit4::class").build()

@@ -16,13 +16,14 @@ import uk.adbsalam.snapit.annotations.SnapAnnotation
  * else create a basic snap test function
  */
 internal fun snapFunctions(
-    functions: Sequence<KSFunctionDeclaration>
+    functions: Sequence<KSFunctionDeclaration>,
+    annotationType: AnnotationType
 ): Iterable<FunSpec> {
     return functions.map { kFun ->
         if (requirePreviewContext(kFun)) {
-            previewFuncSpec(kFun)
+            previewFuncSpec(kFun, annotationType)
         } else {
-            nonPreviewFuncSpec(kFun)
+            nonPreviewFuncSpec(kFun, annotationType)
         }
     }.asIterable()
 }
@@ -32,13 +33,18 @@ internal fun snapFunctions(
  * @return returns a function with capture screenshot commands
  */
 internal fun nonPreviewFuncSpec(
-    function: KSFunctionDeclaration
+    function: KSFunctionDeclaration,
+    annotationType: AnnotationType
 ): FunSpec {
+
+    val captureCommand =
+        if (annotationType == AnnotationType.DARK_COMPONENT || annotationType == AnnotationType.DARK_SCREEN) """captureDarkScreenshot""" else """captureScreenshot"""
+
     return FunSpec.builder(getMethodName(function))
         .addAnnotation(Test::class)
         .addCode(
             """
-                |paparazzi.captureScreenshot {
+                |paparazzi.${captureCommand} {
                 |    $function()
                 |}
                 """.trimMargin()
@@ -52,13 +58,18 @@ internal fun nonPreviewFuncSpec(
  * and set inspection mode true command
  */
 internal fun previewFuncSpec(
-    function: KSFunctionDeclaration
+    function: KSFunctionDeclaration,
+    annotationType: AnnotationType
 ): FunSpec {
+
+    val captureCommand =
+        if (annotationType == AnnotationType.DARK_COMPONENT || annotationType == AnnotationType.DARK_SCREEN) """captureDarkScreenshot""" else """captureScreenshot"""
+
     return FunSpec.builder(getMethodName(function))
         .addAnnotation(Test::class)
         .addCode(
             """
-                |paparazzi.captureScreenshot {
+                |paparazzi.${captureCommand} {
                 |    CompositionLocalProvider(LocalInspectionMode provides true) {
                 |        $function()
                 |    }

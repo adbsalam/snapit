@@ -1,0 +1,8 @@
+@org.junit.Test
+public fun `when dark, should render`() {
+  paparazzi.captureDarkScreenshot {
+      CompositionLocalProvider(LocalInspectionMode provides true) {
+          darkFunTest()
+      }
+  }
+}
