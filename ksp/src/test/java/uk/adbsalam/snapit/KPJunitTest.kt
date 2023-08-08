@@ -19,7 +19,7 @@ class KPJunitTest: KPTest("kjunit_test_case") {
         val jUnitClass = jUnitClass(
             fileName = "TestFile",
             symbols = mockFunctions(MockType.NONE_PREVIEW),
-            annotation = AnnotationType.COMPONENT
+            annotation = AnnotationType.LIGHT_COMPONENT
         )
         val actual = kspCodeFromFile("kjunit_no_preview_funs_class")
         Assert.assertEquals(jUnitClass.toString(), actual)
@@ -31,7 +31,7 @@ class KPJunitTest: KPTest("kjunit_test_case") {
         val jUnitClass = jUnitClass(
             fileName = "TestFile",
             symbols = mockFunctions(MockType.ALL_PREVIEW),
-            annotation = AnnotationType.COMPONENT
+            annotation = AnnotationType.LIGHT_COMPONENT
         )
         val actual = kspCodeFromFile("kjunit_all_preview_funs_class")
         Assert.assertEquals(jUnitClass.toString(), actual)
@@ -43,7 +43,7 @@ class KPJunitTest: KPTest("kjunit_test_case") {
         val jUnitClass = jUnitClass(
             fileName = "TestFile",
             symbols = mockFunctions(MockType.RANDOM),
-            annotation = AnnotationType.COMPONENT
+            annotation = AnnotationType.LIGHT_COMPONENT
         )
         val actual = kspCodeFromFile("kjunit_random_preview_funs_class")
         Assert.assertEquals(jUnitClass.toString(), actual)

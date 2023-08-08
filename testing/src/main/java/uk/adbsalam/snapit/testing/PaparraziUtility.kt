@@ -8,7 +8,7 @@ import androidx.compose.ui.graphics.Color
 import app.cash.paparazzi.DeviceConfig
 import app.cash.paparazzi.Paparazzi
 import com.android.ide.common.rendering.api.SessionParams
-
+import com.android.resources.NightMode
 
 fun Paparazzi.Companion.forComponent() = Paparazzi(
     deviceConfig = DeviceConfig.PIXEL_6_PRO,
@@ -17,7 +17,21 @@ fun Paparazzi.Companion.forComponent() = Paparazzi(
     showSystemUi = false
 )
 
+fun Paparazzi.Companion.forDarkComponent() = Paparazzi(
+    deviceConfig = DeviceConfig(nightMode = NightMode.NIGHT),
+    maxPercentDifference = 0.0,
+    renderingMode = SessionParams.RenderingMode.SHRINK,
+    showSystemUi = false
+)
+
 fun Paparazzi.Companion.forScreen() = Paparazzi(
+    deviceConfig = DeviceConfig.PIXEL_6_PRO,
+    maxPercentDifference = 0.0,
+    renderingMode = SessionParams.RenderingMode.FULL_EXPAND,
+    showSystemUi = true
+)
+
+fun Paparazzi.Companion.forDarkScreen() = Paparazzi(
     deviceConfig = DeviceConfig.PIXEL_6_PRO,
     maxPercentDifference = 0.0,
     renderingMode = SessionParams.RenderingMode.FULL_EXPAND,

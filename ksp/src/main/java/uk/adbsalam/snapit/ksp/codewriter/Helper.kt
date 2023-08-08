@@ -12,7 +12,7 @@ const val PAPARAZZI_PACKAGE = "uk.adbsalam.snapit.testing"
  * @SnapIt(isScreen = false) -> COMPONENT
  */
 enum class AnnotationType {
-    SCREEN, COMPONENT
+    LIGHT_SCREEN, LIGHT_COMPONENT, DARK_SCREEN, DARK_COMPONENT, NONE
 }
 
 /**
@@ -27,10 +27,12 @@ internal fun getFileName(
     file: String,
     annotation: AnnotationType
 ): String {
-    return if (annotation == AnnotationType.COMPONENT) {
-        file.replace(".kt", "ComponentTest")
-    } else {
-        file.replace(".kt", "ScreenTest")
+    return when (annotation) {
+        AnnotationType.LIGHT_SCREEN -> file.replace(".kt", "ScreenTest")
+        AnnotationType.LIGHT_COMPONENT -> file.replace(".kt", "ComponentTest")
+        AnnotationType.DARK_SCREEN -> file.replace(".kt", "DarkScreenTest")
+        AnnotationType.DARK_COMPONENT -> file.replace(".kt", "DarkComponentTest")
+        AnnotationType.NONE -> ""
     }
 }
 

@@ -55,9 +55,12 @@ internal fun jUnitClass(
 private fun paparazziInitializer(
     annotation: AnnotationType
 ): String {
-    return if (annotation == AnnotationType.COMPONENT)
-        "Paparazzi.forComponent()"
-    else
-        "Paparazzi.forScreen()"
+    return when (annotation) {
+        AnnotationType.LIGHT_SCREEN -> "Paparazzi.forScreen()"
+        AnnotationType.LIGHT_COMPONENT -> "Paparazzi.forComponent()"
+        AnnotationType.DARK_SCREEN -> "Paparazzi.forDarkScreen()"
+        AnnotationType.DARK_COMPONENT -> "Paparazzi.forDarkComponent()"
+        AnnotationType.NONE -> ""
+    }
 }
 

@@ -30,15 +30,24 @@ internal fun requirePreviewContext(
  **/
 internal fun isScreenComponent(
     function: KSFunctionDeclaration,
-): Boolean {
-
+): AnnotationType {
     val annotation: KSAnnotation = function.annotations.first {
         it.shortName.asString() == SNAP_IT.annotation
     }
 
-    val tagArg: KSValueArgument =
+    val screenArg: KSValueArgument =
         annotation.arguments.first { arg -> arg.name?.asString() == "isScreen" }
 
-    return tagArg.value as Boolean
-}
+    val dark: KSValueArgument =
+        annotation.arguments.first { arg -> arg.name?.asString() == "isDark" }
 
+    val isScreen = screenArg.value as Boolean
+    val isDark = dark.value as Boolean
+
+    return when {
+        !isScreen && !isDark -> AnnotationType.LIGHT_COMPONENT
+        isScreen && !isDark -> AnnotationType.LIGHT_SCREEN
+        isScreen && isDark -> AnnotationType.DARK_SCREEN
+        else -> AnnotationType.DARK_COMPONENT
+    }
+}

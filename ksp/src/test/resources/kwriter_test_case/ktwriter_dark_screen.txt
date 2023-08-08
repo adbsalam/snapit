@@ -1,0 +1,32 @@
+// package uk.co.test.name
+//
+// import app.cash.paparazzi.Paparazzi
+// import org.junit.Rule
+// import org.junit.Test
+// import org.junit.runner.RunWith
+// import org.junit.runners.JUnit4
+// import uk.adbsalam.snapit.testing.captureScreenshot
+// import uk.adbsalam.snapit.testing.forDarkScreen
+//
+// @RunWith(JUnit4::class)
+// class TestExample {
+//   @get:Rule
+//   val paparazzi: Paparazzi = Paparazzi.forDarkScreen()
+//
+//   @Test
+//   fun `when dark, should render`() {
+//     paparazzi.captureScreenshot {
+//         darkFunTest()
+//     }
+//   }
+//
+//   @Test
+//   fun `when dark, should render`() {
+//     paparazzi.captureScreenshot {
+//         darkFunTest()
+//     }
+//   }
+// }
+//
+
+

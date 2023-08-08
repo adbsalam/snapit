@@ -1,6 +1,5 @@
 package uk.adbsalam.snapit.ksp.codewriter
 
-import uk.adbsalam.snapit.ksp.codewriter.AnnotationType.COMPONENT
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 import com.squareup.kotlinpoet.FileSpec
 import org.junit.runners.JUnit4
@@ -48,5 +47,12 @@ internal fun kFile(
  */
 private fun paparazziInstanceImport(
     annotation: AnnotationType
-): String =
-    if (annotation == COMPONENT) "forComponent" else "forScreen"
+): String {
+    return when (annotation) {
+        AnnotationType.LIGHT_SCREEN -> "forScreen"
+        AnnotationType.LIGHT_COMPONENT -> "forComponent"
+        AnnotationType.DARK_SCREEN -> "forDarkScreen"
+        AnnotationType.DARK_COMPONENT -> "forDarkComponent"
+        AnnotationType.NONE -> ""
+    }
+}

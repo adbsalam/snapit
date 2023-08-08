@@ -4,6 +4,7 @@ import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import uk.adbsalam.snapit.ksp.codewriter.AnnotationType
 import uk.adbsalam.snapit.ksp.codewriter.isScreenComponent
 import uk.adbsalam.snapit.ksp.codewriter.requirePreviewContext
 import uk.adbsalam.snapit.utils.mockSingleFunction
@@ -38,7 +39,7 @@ class KPPramsTest {
     }
 
     @Test
-    fun `isScreenComponent, when function have isScreen set to true, should return true`(){
+    fun `isScreenComponent, when function have isScreen set to true, should return LIGHT_SCREEN`(){
         val screenFun = mockSingleFunction(
             annotationNameValue = "when in test, run test",
             funName = "PreviewTest",
@@ -47,11 +48,11 @@ class KPPramsTest {
         )
 
         val result = isScreenComponent(screenFun)
-        Assert.assertEquals(result, true)
+        Assert.assertEquals(result, AnnotationType.LIGHT_SCREEN)
     }
 
     @Test
-    fun `isScreenComponent, when function have isScreen set to false, should return true`(){
+    fun `isScreenComponent, when function have isScreen set to false, should return LIGHT_COMPONENT`(){
         val screenFun = mockSingleFunction(
             annotationNameValue = "when in test, run test",
             funName = "PreviewTest",
@@ -60,7 +61,35 @@ class KPPramsTest {
         )
 
         val result = isScreenComponent(screenFun)
-        Assert.assertEquals(result, false)
+        Assert.assertEquals(result, AnnotationType.LIGHT_COMPONENT)
+    }
+
+    @Test
+    fun `isScreenComponent, when function have isScreen set to true and is Dark is true, should return DARK_SCREEN`(){
+        val screenFun = mockSingleFunction(
+            annotationNameValue = "when in test, run test",
+            funName = "PreviewTest",
+            isPreview = false,
+            isScreen = true,
+            isDark = true
+        )
+
+        val result = isScreenComponent(screenFun)
+        Assert.assertEquals(result, AnnotationType.DARK_SCREEN)
+    }
+
+    @Test
+    fun `isScreenComponent, when function have isScreen set to false and isDark true, should return DARK_COMPONENT`(){
+        val screenFun = mockSingleFunction(
+            annotationNameValue = "when in test, run test",
+            funName = "PreviewTest",
+            isPreview = false,
+            isScreen = false,
+            isDark = true
+        )
+
+        val result = isScreenComponent(screenFun)
+        Assert.assertEquals(result, AnnotationType.DARK_COMPONENT)
     }
 
 }
