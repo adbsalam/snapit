@@ -55,7 +55,9 @@ fun Paparazzi.Companion.forGif() = Paparazzi()
 /**
  *
  */
-fun Paparazzi.Companion.forDarkGif() = Paparazzi()
+fun Paparazzi.Companion.forDarkGif() = Paparazzi(
+    deviceConfig = DeviceConfig.NEXUS_5.copy(nightMode = NightMode.NIGHT)
+)
 
 /**
  *
