@@ -1,15 +1,15 @@
 package uk.adbsalam.snapit.testing
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.ComposeView
 import app.cash.paparazzi.DeviceConfig
 import app.cash.paparazzi.Paparazzi
 import com.android.ide.common.rendering.api.SessionParams
 import com.android.resources.NightMode
 
+/**
+ *
+ */
 fun Paparazzi.Companion.forComponent() = Paparazzi(
     deviceConfig = DeviceConfig.PIXEL_6_PRO,
     maxPercentDifference = 0.0,
@@ -17,13 +17,19 @@ fun Paparazzi.Companion.forComponent() = Paparazzi(
     showSystemUi = false
 )
 
+/**
+ *
+ */
 fun Paparazzi.Companion.forDarkComponent() = Paparazzi(
-    deviceConfig = DeviceConfig(nightMode = NightMode.NIGHT),
+    deviceConfig = DeviceConfig.PIXEL_6_PRO.copy(nightMode = NightMode.NIGHT),
     maxPercentDifference = 0.0,
     renderingMode = SessionParams.RenderingMode.SHRINK,
     showSystemUi = false
 )
 
+/**
+ *
+ */
 fun Paparazzi.Companion.forScreen() = Paparazzi(
     deviceConfig = DeviceConfig.PIXEL_6_PRO,
     maxPercentDifference = 0.0,
@@ -31,6 +37,9 @@ fun Paparazzi.Companion.forScreen() = Paparazzi(
     showSystemUi = true
 )
 
+/**
+ *
+ */
 fun Paparazzi.Companion.forDarkScreen() = Paparazzi(
     deviceConfig = DeviceConfig.PIXEL_6_PRO,
     maxPercentDifference = 0.0,
@@ -38,19 +47,39 @@ fun Paparazzi.Companion.forDarkScreen() = Paparazzi(
     showSystemUi = true
 )
 
+/**
+ *
+ */
+fun Paparazzi.Companion.forGif() = Paparazzi()
+
+/**
+ *
+ */
+fun Paparazzi.Companion.forDarkGif() = Paparazzi()
+
+/**
+ *
+ */
 fun Paparazzi.captureScreenshot(composable: @Composable () -> Unit) {
     this.snapshot {
-        Box(modifier = Modifier.background(Color.White)) {
-            composable()
-        }
+        composable()
     }
 }
 
-fun Paparazzi.captureDarkScreenshot(composable: @Composable () -> Unit) {
-    this.snapshot {
-        Box(modifier = Modifier.background(Color.Unspecified)) {
-            composable()
-        }
+/**
+ *
+ */
+fun Paparazzi.gifSnapshot(
+    start: Long = 0L,
+    end: Long = 500L,
+    fps: Int = 30,
+    content: @Composable () -> Unit,
+) {
+    val composable: @Composable () -> Unit = {
+        content()
     }
+    val hostView = ComposeView(context)
+    hostView.setContent(composable)
+    gif(view = hostView, start = start, end = end, fps = fps)
 }
 

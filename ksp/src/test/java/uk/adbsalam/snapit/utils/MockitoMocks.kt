@@ -26,14 +26,16 @@ internal fun mockSingleFunction(
     funName: String,
     isPreview: Boolean = false,
     isScreen: Boolean = false,
-    isDark: Boolean = false
+    isDark: Boolean = false,
+    isGif: Boolean = false
 ): KSFunctionDeclaration {
     return annotatedFunction(
         annotationNameValue = annotationNameValue,
         funName = funName,
         isPreview = isPreview,
         isScreen = isScreen,
-        isDark = isDark
+        isDark = isDark,
+        isGif = isGif
     )
 }
 
@@ -81,6 +83,21 @@ internal fun mockDarkFun(isScreen: Boolean) = sequenceOf(
     )
 )
 
+internal fun mockkGifFun(isDark: Boolean) = sequenceOf(
+    annotatedFunction(
+        annotationNameValue = "when dark, should render",
+        funName = "darkFunTest",
+        isDark = isDark,
+        isGif = true
+    ),
+    annotatedFunction(
+        annotationNameValue = "when dark, should render",
+        funName = "darkFunTest",
+        isDark = isDark,
+        isGif = true
+    )
+)
+
 /**
  * @param annotationNameValue annotation param "name" value to be set
  * @param funName function name to be set
@@ -94,7 +111,8 @@ private fun annotatedFunction(
     funName: String,
     isPreview: Boolean = false,
     isScreen: Boolean = false,
-    isDark: Boolean = false
+    isDark: Boolean = false,
+    isGif: Boolean = false
 ): KSFunctionDeclaration {
 
     val file = mockFile()
@@ -103,7 +121,8 @@ private fun annotatedFunction(
         paramName = annotationNameValue,
         isPreview = isPreview,
         isScreen = isScreen,
-        isDark = isDark
+        isDark = isDark,
+        isGif = isGif
     )
 
     val ksFunctionMock = Mockito.mock(KSFunctionDeclaration::class.java).stub {
@@ -167,7 +186,8 @@ private fun mockSnapAnnotation(
     paramName: String,
     isPreview: Boolean = false,
     isScreen: Boolean = false,
-    isDark: Boolean = false
+    isDark: Boolean = false,
+    isGif: Boolean = false
 ): KSAnnotation {
 
     val annotationName = Mockito.mock(KSName::class.java).stub {
@@ -177,12 +197,16 @@ private fun mockSnapAnnotation(
     val nameArg = mockArg("name", paramName)
     val previewArg = mockArg("preview", isPreview)
     val isScreenArg = mockArg("isScreen", isScreen)
-    val isDark = mockArg("isDark", isDark)
+    val isDarkArg = mockArg("isDark", isDark)
+    val gifArg = mockArg("gif", isGif)
+    val startArg = mockArg("start", 0L)
+    val endArg = mockArg("end", 500L)
+    val fpsArg = mockArg("fps", 30)
 
     return Mockito.mock(KSAnnotation::class.java).stub {
         on { shortName } doReturn annotationName
         on { shortName.asString() } doReturn "SnapIt"
-        on { arguments } doReturn listOf(nameArg, previewArg, isScreenArg, isDark)
+        on { arguments } doReturn listOf(nameArg, previewArg, isScreenArg, isDarkArg, gifArg, startArg, endArg, fpsArg)
     }
 
 }

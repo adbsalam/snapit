@@ -15,6 +15,7 @@ import uk.adbsalam.snapit.utils.joinFunctions
 import uk.adbsalam.snapit.utils.mockDarkFun
 import uk.adbsalam.snapit.utils.mockFunctions
 import uk.adbsalam.snapit.utils.mockSingleFunction
+import uk.adbsalam.snapit.utils.mockkGifFun
 
 @RunWith(JUnit4::class)
 class KPFunctionTest : KPTest("kfunction_test_case") {
@@ -47,7 +48,7 @@ class KPFunctionTest : KPTest("kfunction_test_case") {
     }
 
     @Test
-    fun `previewFuncSpec - when function with preview value set to false - should generate function correctly`() {
+    fun `nonPreviewFuncSpec - when function with preview value set to false - should generate function correctly`() {
         val mockFunction = mockSingleFunction("when some test, should run test", "ExamplePreview")
 
         val nonPreviewFunction = nonPreviewFuncSpec(mockFunction, AnnotationType.LIGHT_COMPONENT).toString()
@@ -65,11 +66,29 @@ class KPFunctionTest : KPTest("kfunction_test_case") {
     }
 
     @Test
-    fun `previewFuncSpec - dark screen and non preview - should generate function correctly`() {
+    fun `nonPreviewFuncSpec - dark screen and non preview - should generate function correctly`() {
         val mockFunction = mockDarkFun(false).first()
 
         val previewFunction = nonPreviewFuncSpec(mockFunction, AnnotationType.DARK_COMPONENT).toString()
         val actual = kspCodeFromFile("kfunction_dark_component_no_preview")
+        Assert.assertEquals(previewFunction, actual)
+    }
+
+    @Test
+    fun `previewFuncSpec - dark gif and preview - should generate function correctly`() {
+        val mockFunction = mockkGifFun(true).first()
+
+        val previewFunction = previewFuncSpec(mockFunction, AnnotationType.DARK_GIF).toString()
+        val actual = kspCodeFromFile("kfunction_gif_preview")
+        Assert.assertEquals(previewFunction, actual)
+    }
+
+    @Test
+    fun `nonPreviewFuncSpec - dark gif and preview - should generate function correctly`() {
+        val mockFunction = mockkGifFun(true).first()
+
+        val previewFunction = nonPreviewFuncSpec(mockFunction, AnnotationType.DARK_GIF).toString()
+        val actual = kspCodeFromFile("kfunction_gif_no_preview")
         Assert.assertEquals(previewFunction, actual)
     }
 

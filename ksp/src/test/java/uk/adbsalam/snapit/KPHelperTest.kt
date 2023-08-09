@@ -38,6 +38,18 @@ class KPHelperTest : KPTest("remove_extras_test_case") {
             annotation = AnnotationType.DARK_SCREEN
         )
         Assert.assertEquals(darkScreenFileName, "TestDarkScreenTest")
+
+        val darkGifFileName = getFileName(
+            file = "Test.kt",
+            annotation = AnnotationType.DARK_GIF
+        )
+        Assert.assertEquals(darkGifFileName, "TestDarkGifTest")
+
+        val lightGifFileName = getFileName(
+            file = "Test.kt",
+            annotation = AnnotationType.LIGHT_GIF
+        )
+        Assert.assertEquals(lightGifFileName, "TestLightGifTest")
     }
 
     @Test

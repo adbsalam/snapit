@@ -37,14 +37,18 @@ internal fun nonPreviewFuncSpec(
     annotationType: AnnotationType
 ): FunSpec {
 
-    val captureCommand =
-        if (annotationType == AnnotationType.DARK_COMPONENT || annotationType == AnnotationType.DARK_SCREEN) """captureDarkScreenshot""" else """captureScreenshot"""
+    if (annotationType == AnnotationType.DARK_GIF || annotationType == AnnotationType.LIGHT_GIF) {
+        return handleGifFun(
+            function = function,
+            isPreview = false
+        )
+    }
 
     return FunSpec.builder(getMethodName(function))
         .addAnnotation(Test::class)
         .addCode(
             """
-                |paparazzi.${captureCommand} {
+                |paparazzi.captureScreenshot {
                 |    $function()
                 |}
                 """.trimMargin()
@@ -62,17 +66,73 @@ internal fun previewFuncSpec(
     annotationType: AnnotationType
 ): FunSpec {
 
-    val captureCommand =
-        if (annotationType == AnnotationType.DARK_COMPONENT || annotationType == AnnotationType.DARK_SCREEN) """captureDarkScreenshot""" else """captureScreenshot"""
+    if (annotationType == AnnotationType.DARK_GIF || annotationType == AnnotationType.LIGHT_GIF) {
+        return handleGifFun(
+            function = function,
+            isPreview = true
+        )
+    }
 
     return FunSpec.builder(getMethodName(function))
         .addAnnotation(Test::class)
         .addCode(
             """
-                |paparazzi.${captureCommand} {
+                |paparazzi.captureScreenshot {
                 |    CompositionLocalProvider(LocalInspectionMode provides true) {
                 |        $function()
                 |    }
+                |}
+                """.trimMargin()
+        )
+        .build()
+}
+
+/**
+ *
+ */
+fun handleGifFun(
+    function: KSFunctionDeclaration,
+    isPreview: Boolean
+): FunSpec {
+
+    val annotation: KSAnnotation = function.annotations.first {
+        it.shortName.asString() == SnapAnnotation.SNAP_IT.annotation
+    }
+
+    val startArg: KSValueArgument =
+        annotation.arguments.first { arg -> arg.name?.asString() == "start" }
+
+    val endArg: KSValueArgument =
+        annotation.arguments.first { arg -> arg.name?.asString() == "end" }
+
+    val fpsArg: KSValueArgument =
+        annotation.arguments.first { arg -> arg.name?.asString() == "fps" }
+
+    val start = startArg.value as Long
+    val end = endArg.value as Long
+    val fps = fpsArg.value as Int
+
+    if (isPreview) {
+        return FunSpec.builder(getMethodName(function))
+            .addAnnotation(Test::class)
+            .addCode(
+                """
+                |paparazzi.gifSnapshot(${start}L, ${end}L, $fps) {
+                |    CompositionLocalProvider(LocalInspectionMode provides true) {
+                |        $function()
+                |    }
+                |}
+                """.trimMargin()
+            )
+            .build()
+    }
+
+    return FunSpec.builder(getMethodName(function))
+        .addAnnotation(Test::class)
+        .addCode(
+            """
+                |paparazzi.gifSnapshot(${start}L, ${end}L, $fps) {
+                |    $function()
                 |}
                 """.trimMargin()
         )

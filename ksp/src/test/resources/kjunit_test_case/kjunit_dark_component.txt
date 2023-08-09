@@ -5,14 +5,14 @@ public class TestFile {
 
   @org.junit.Test
   public fun `when dark, should render`() {
-    paparazzi.captureDarkScreenshot {
+    paparazzi.captureScreenshot {
         darkFunTest()
     }
   }
 
   @org.junit.Test
   public fun `when dark, should render`() {
-    paparazzi.captureDarkScreenshot {
+    paparazzi.captureScreenshot {
         darkFunTest()
     }
   }

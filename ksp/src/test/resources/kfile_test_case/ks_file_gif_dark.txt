@@ -5,5 +5,6 @@ import androidx.compose.ui.platform.LocalInspectionMode
 import app.cash.paparazzi.Paparazzi
 import org.junit.runners.JUnit4
 import uk.adbsalam.snapit.testing.captureScreenshot
-import uk.adbsalam.snapit.testing.forDarkComponent
+import uk.adbsalam.snapit.testing.forDarkGif
+import uk.adbsalam.snapit.testing.gifSnapshot
 

@@ -12,7 +12,7 @@ const val PAPARAZZI_PACKAGE = "uk.adbsalam.snapit.testing"
  * @SnapIt(isScreen = false) -> COMPONENT
  */
 enum class AnnotationType {
-    LIGHT_SCREEN, LIGHT_COMPONENT, DARK_SCREEN, DARK_COMPONENT, NONE
+    LIGHT_SCREEN, LIGHT_COMPONENT, DARK_SCREEN, DARK_COMPONENT, DARK_GIF, LIGHT_GIF, NONE
 }
 
 /**
@@ -32,6 +32,8 @@ internal fun getFileName(
         AnnotationType.LIGHT_COMPONENT -> file.replace(".kt", "ComponentTest")
         AnnotationType.DARK_SCREEN -> file.replace(".kt", "DarkScreenTest")
         AnnotationType.DARK_COMPONENT -> file.replace(".kt", "DarkComponentTest")
+        AnnotationType.LIGHT_GIF -> file.replace(".kt", "LightGifTest")
+        AnnotationType.DARK_GIF -> file.replace(".kt", "DarkGifTest")
         AnnotationType.NONE -> ""
     }
 }
