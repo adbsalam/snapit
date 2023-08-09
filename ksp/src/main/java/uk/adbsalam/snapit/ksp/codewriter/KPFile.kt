@@ -33,7 +33,6 @@ internal fun kFile(
         .builder(packageName, fileName)
         .addImport(JUnit4::class, "")
         .addImport("app.cash.paparazzi", "Paparazzi")
-        .addImport(PAPARAZZI_PACKAGE, "captureScreenshot")
         .addImport(PAPARAZZI_PACKAGE, paparazziInstanceImport(annotation))
 
     if (annotation == LIGHT_GIF || annotation == DARK_GIF) {
