@@ -34,3 +34,10 @@ fun ExamplePreview2() {
 fun ExamplePreviewDarkComponent() {
     ExampleCompose()
 }
+
+@Composable
+@Preview
+@SnapIt(name = "when a gif, should render correctly", gif = true)
+fun ExamplePreviewGif() {
+    ExampleCompose()
+}
