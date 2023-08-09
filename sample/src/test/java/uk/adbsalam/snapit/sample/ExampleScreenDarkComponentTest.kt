@@ -5,7 +5,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import uk.adbsalam.snapit.testing.captureDarkScreenshot
+import uk.adbsalam.snapit.testing.captureScreenshot
 import uk.adbsalam.snapit.testing.forDarkComponent
 
 @RunWith(JUnit4::class)
@@ -15,7 +15,7 @@ class ExampleScreenDarkComponentTest {
 
     @Test
     fun `when in preview, should render correctly`() {
-        paparazzi.captureDarkScreenshot {
+        paparazzi.captureScreenshot {
             ExamplePreviewDarkComponent()
         }
     }

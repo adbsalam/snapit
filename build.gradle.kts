@@ -20,7 +20,7 @@ subprojects {
     plugins.withType(MavenPublishBasePlugin::class.java).configureEach {
         project.extensions.getByType<MavenPublishBaseExtension>().apply {
             @Suppress("UnstableApiUsage")
-            coordinates("uk.adbsalam.snapit", project.name, "1.0.5")
+            coordinates("uk.adbsalam.snapit", project.name, "2.0.0")
             publishToMavenCentral(SonatypeHost.S01)
 
             @Suppress("UnstableApiUsage")
