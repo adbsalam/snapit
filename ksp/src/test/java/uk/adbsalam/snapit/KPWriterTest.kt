@@ -11,6 +11,7 @@ import uk.adbsalam.snapit.utils.KPTest
 import uk.adbsalam.snapit.utils.MockType
 import uk.adbsalam.snapit.utils.mockDarkFun
 import uk.adbsalam.snapit.utils.mockFunctions
+import uk.adbsalam.snapit.utils.mockkGifFun
 
 @RunWith(JUnit4::class)
 class KPWriterTest : KPTest("kwriter_test_case") {
@@ -108,6 +109,36 @@ class KPWriterTest : KPTest("kwriter_test_case") {
         )
         val commented = commentedFile(codeFile)
         val actual = kspCodeFromFile("ktwriter_dark_screen")
+
+        Assert.assertEquals(commented, actual)
+    }
+
+    @Test
+    fun `commentedFile - dark gif with previews file generated- should be commented and cleaned correctly`() {
+        val functions = mockkGifFun(true)
+        val codeFile = codeFile(
+            previewImports = true,
+            fileName = "TestExample",
+            symbols = functions,
+            annotation = AnnotationType.DARK_GIF
+        )
+        val commented = commentedFile(codeFile)
+        val actual = kspCodeFromFile("kwriter_dark_gif")
+
+        Assert.assertEquals(commented, actual)
+    }
+
+    @Test
+    fun `commentedFile - light screen file generated- should be commented and cleaned correctly`() {
+        val functions = mockkGifFun(false)
+        val codeFile = codeFile(
+            previewImports = false,
+            fileName = "TestExample",
+            symbols = functions,
+            annotation = AnnotationType.LIGHT_GIF
+        )
+        val commented = commentedFile(codeFile)
+        val actual = kspCodeFromFile("kwriter_light_gif")
 
         Assert.assertEquals(commented, actual)
     }

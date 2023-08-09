@@ -60,7 +60,10 @@ private fun paparazziInitializer(
         AnnotationType.LIGHT_COMPONENT -> "Paparazzi.forComponent()"
         AnnotationType.DARK_SCREEN -> "Paparazzi.forDarkScreen()"
         AnnotationType.DARK_COMPONENT -> "Paparazzi.forDarkComponent()"
+        AnnotationType.DARK_GIF -> "Paparazzi.forDarkGif()"
+        AnnotationType.LIGHT_GIF -> "Paparazzi.forGif()"
         AnnotationType.NONE -> ""
+
     }
 }
 

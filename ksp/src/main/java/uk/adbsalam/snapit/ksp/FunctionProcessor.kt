@@ -9,7 +9,7 @@ import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 import com.google.devtools.ksp.validate
 import uk.adbsalam.snapit.annotations.SnapAnnotation
 import uk.adbsalam.snapit.ksp.codewriter.AnnotationType
-import uk.adbsalam.snapit.ksp.codewriter.isScreenComponent
+import uk.adbsalam.snapit.ksp.codewriter.componentType
 import uk.adbsalam.snapit.ksp.codewriter.processSymbols
 
 /**
@@ -41,50 +41,36 @@ class FunctionProcessor(
             return emptyList()
         }
 
-        val darkComponentSymbols = symbols.filter { isScreenComponent(it) == AnnotationType.DARK_COMPONENT }
-
-        if (darkComponentSymbols.iterator().hasNext()) {
-            processSymbols(
-                symbols = darkComponentSymbols,
-                codeGenerator = codeGenerator,
-                resolver = resolver,
-                annotation = AnnotationType.DARK_COMPONENT
-            )
+        AnnotationType.values().forEach {
+            if (it != AnnotationType.NONE) {
+                processAnnotationType(
+                    symbols = symbols,
+                    resolver = resolver,
+                    annotationType = it
+                )
+            }
         }
 
-        val darkScreenSymbols = symbols.filter { isScreenComponent(it) == AnnotationType.DARK_SCREEN }
-        if (darkScreenSymbols.iterator().hasNext()) {
-            processSymbols(
-                symbols = darkScreenSymbols,
-                codeGenerator = codeGenerator,
-                resolver = resolver,
-                annotation = AnnotationType.DARK_SCREEN
-            )
-        }
+        return symbols.filterNot { it.validate() }.toList()
+    }
 
+    private fun processAnnotationType(
+        symbols: Sequence<KSFunctionDeclaration>,
+        resolver: Resolver,
+        annotationType: AnnotationType
+    ): Sequence<KSFunctionDeclaration> {
 
-        val componentSymbol = symbols.filter { isScreenComponent(it) == AnnotationType.LIGHT_COMPONENT }
-
-        if (componentSymbol.iterator().hasNext()) {
-            processSymbols(
-                symbols = componentSymbol,
-                codeGenerator = codeGenerator,
-                resolver = resolver,
-                annotation = AnnotationType.LIGHT_COMPONENT
-            )
-        }
-
-        val screenSymbols = symbols.filter { isScreenComponent(it) == AnnotationType.LIGHT_SCREEN }
+        val screenSymbols = symbols.filter { componentType(it) == annotationType }
 
         if (screenSymbols.iterator().hasNext()) {
             processSymbols(
                 symbols = screenSymbols,
                 codeGenerator = codeGenerator,
                 resolver = resolver,
-                annotation = AnnotationType.LIGHT_SCREEN
+                annotation = annotationType
             )
         }
-
-        return symbols.filterNot { it.validate() }.toList()
+        return screenSymbols
     }
 }
+

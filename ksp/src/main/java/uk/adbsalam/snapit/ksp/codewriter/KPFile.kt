@@ -3,6 +3,12 @@ package uk.adbsalam.snapit.ksp.codewriter
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 import com.squareup.kotlinpoet.FileSpec
 import org.junit.runners.JUnit4
+import uk.adbsalam.snapit.ksp.codewriter.AnnotationType.DARK_COMPONENT
+import uk.adbsalam.snapit.ksp.codewriter.AnnotationType.DARK_GIF
+import uk.adbsalam.snapit.ksp.codewriter.AnnotationType.DARK_SCREEN
+import uk.adbsalam.snapit.ksp.codewriter.AnnotationType.LIGHT_COMPONENT
+import uk.adbsalam.snapit.ksp.codewriter.AnnotationType.LIGHT_GIF
+import uk.adbsalam.snapit.ksp.codewriter.AnnotationType.LIGHT_SCREEN
 
 /**
  * @param previewImports if file require preview imports true else false
@@ -27,12 +33,12 @@ internal fun kFile(
         .builder(packageName, fileName)
         .addImport(JUnit4::class, "")
         .addImport("app.cash.paparazzi", "Paparazzi")
+        .addImport(PAPARAZZI_PACKAGE, "captureScreenshot")
         .addImport(PAPARAZZI_PACKAGE, paparazziInstanceImport(annotation))
 
-    if(annotation == AnnotationType.DARK_SCREEN || annotation == AnnotationType.DARK_COMPONENT){
-        file.addImport(PAPARAZZI_PACKAGE, "captureDarkScreenshot")
-    }
-    else{
+    if (annotation == LIGHT_GIF || annotation == DARK_GIF) {
+        file.addImport(PAPARAZZI_PACKAGE, "gifSnapshot")
+    } else {
         file.addImport(PAPARAZZI_PACKAGE, "captureScreenshot")
     }
 
@@ -55,10 +61,13 @@ private fun paparazziInstanceImport(
     annotation: AnnotationType
 ): String {
     return when (annotation) {
-        AnnotationType.LIGHT_SCREEN -> "forScreen"
-        AnnotationType.LIGHT_COMPONENT -> "forComponent"
-        AnnotationType.DARK_SCREEN -> "forDarkScreen"
-        AnnotationType.DARK_COMPONENT -> "forDarkComponent"
+        LIGHT_SCREEN -> "forScreen"
+        LIGHT_COMPONENT -> "forComponent"
+        DARK_SCREEN -> "forDarkScreen"
+        DARK_COMPONENT -> "forDarkComponent"
+        DARK_GIF -> "forDarkGif"
+        LIGHT_GIF -> "forGif"
         AnnotationType.NONE -> ""
+
     }
 }

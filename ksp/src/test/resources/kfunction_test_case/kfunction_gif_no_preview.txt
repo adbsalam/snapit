@@ -1,6 +1,6 @@
 @org.junit.Test
 public fun `when dark, should render`() {
-  paparazzi.captureScreenshot {
+  paparazzi.gifSnapshot(0L, 500L, 30) {
       darkFunTest()
   }
 }

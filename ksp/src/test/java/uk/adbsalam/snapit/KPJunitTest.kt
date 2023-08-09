@@ -10,6 +10,7 @@ import uk.adbsalam.snapit.utils.KPTest
 import uk.adbsalam.snapit.utils.MockType
 import uk.adbsalam.snapit.utils.mockDarkFun
 import uk.adbsalam.snapit.utils.mockFunctions
+import uk.adbsalam.snapit.utils.mockkGifFun
 
 @RunWith(JUnit4::class)
 class KPJunitTest: KPTest("kjunit_test_case") {
@@ -73,5 +74,30 @@ class KPJunitTest: KPTest("kjunit_test_case") {
         val actual = kspCodeFromFile("kjunit_dark_component")
         Assert.assertEquals(jUnitClass.toString(), actual)
     }
+
+    @Test
+    fun `jUnitClass - when dark gif - should generate code correctly`(){
+
+        val jUnitClass = jUnitClass(
+            fileName = "TestFile",
+            symbols = mockkGifFun(true),
+            annotation = AnnotationType.DARK_GIF
+        )
+        val actual = kspCodeFromFile("kjunit_dark_gif")
+        Assert.assertEquals(jUnitClass.toString(), actual)
+    }
+
+    @Test
+    fun `jUnitClass -  when light gif  - should generate code correctly`(){
+
+        val jUnitClass = jUnitClass(
+            fileName = "TestFile",
+            symbols = mockkGifFun(false),
+            annotation = AnnotationType.LIGHT_GIF
+        )
+        val actual = kspCodeFromFile("kjunit_light_gif")
+        Assert.assertEquals(jUnitClass.toString(), actual)
+    }
+
 
 }

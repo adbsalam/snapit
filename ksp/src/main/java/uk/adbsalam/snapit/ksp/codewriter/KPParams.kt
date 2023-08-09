@@ -28,7 +28,7 @@ internal fun requirePreviewContext(
  * @return True if function annotation contains isScreen = true
  * This is to allow writer know generated code needs to have screen paparazzi instance
  **/
-internal fun isScreenComponent(
+internal fun componentType(
     function: KSFunctionDeclaration,
 ): AnnotationType {
     val annotation: KSAnnotation = function.annotations.first {
@@ -41,10 +41,16 @@ internal fun isScreenComponent(
     val dark: KSValueArgument =
         annotation.arguments.first { arg -> arg.name?.asString() == "isDark" }
 
+    val gif: KSValueArgument =
+        annotation.arguments.first { arg -> arg.name?.asString() == "gif" }
+
     val isScreen = screenArg.value as Boolean
     val isDark = dark.value as Boolean
+    val isGif = gif.value as Boolean
 
     return when {
+        isGif && !isDark -> AnnotationType.LIGHT_GIF
+        isGif && isDark -> AnnotationType.DARK_GIF
         !isScreen && !isDark -> AnnotationType.LIGHT_COMPONENT
         isScreen && !isDark -> AnnotationType.LIGHT_SCREEN
         isScreen && isDark -> AnnotationType.DARK_SCREEN

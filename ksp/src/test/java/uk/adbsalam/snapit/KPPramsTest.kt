@@ -5,7 +5,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import uk.adbsalam.snapit.ksp.codewriter.AnnotationType
-import uk.adbsalam.snapit.ksp.codewriter.isScreenComponent
+import uk.adbsalam.snapit.ksp.codewriter.componentType
 import uk.adbsalam.snapit.ksp.codewriter.requirePreviewContext
 import uk.adbsalam.snapit.utils.mockSingleFunction
 
@@ -47,7 +47,7 @@ class KPPramsTest {
             isScreen = true
         )
 
-        val result = isScreenComponent(screenFun)
+        val result = componentType(screenFun)
         Assert.assertEquals(result, AnnotationType.LIGHT_SCREEN)
     }
 
@@ -60,7 +60,7 @@ class KPPramsTest {
             isScreen = false
         )
 
-        val result = isScreenComponent(screenFun)
+        val result = componentType(screenFun)
         Assert.assertEquals(result, AnnotationType.LIGHT_COMPONENT)
     }
 
@@ -74,7 +74,7 @@ class KPPramsTest {
             isDark = true
         )
 
-        val result = isScreenComponent(screenFun)
+        val result = componentType(screenFun)
         Assert.assertEquals(result, AnnotationType.DARK_SCREEN)
     }
 
@@ -88,8 +88,38 @@ class KPPramsTest {
             isDark = true
         )
 
-        val result = isScreenComponent(screenFun)
+        val result = componentType(screenFun)
         Assert.assertEquals(result, AnnotationType.DARK_COMPONENT)
+    }
+
+    @Test
+    fun `isScreenComponent, when function have gif true and is Dark is true, should return DARK_SCREEN`(){
+        val screenFun = mockSingleFunction(
+            annotationNameValue = "when in test, run test",
+            funName = "PreviewTest",
+            isPreview = false,
+            isScreen = true,
+            isDark = true,
+            isGif = true
+        )
+
+        val result = componentType(screenFun)
+        Assert.assertEquals(result, AnnotationType.DARK_GIF)
+    }
+
+    @Test
+    fun `isScreenComponent, when function have gif true and is dark false, should return LIGHT_GIF`(){
+        val screenFun = mockSingleFunction(
+            annotationNameValue = "when in test, run test",
+            funName = "PreviewTest",
+            isPreview = false,
+            isScreen = false,
+            isDark = false,
+            isGif = true
+        )
+
+        val result = componentType(screenFun)
+        Assert.assertEquals(result, AnnotationType.LIGHT_GIF)
     }
 
 }

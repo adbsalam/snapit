@@ -11,6 +11,7 @@ import uk.adbsalam.snapit.utils.MockType
 import uk.adbsalam.snapit.utils.mockDarkFun
 import uk.adbsalam.snapit.utils.mockFunctions
 import uk.adbsalam.snapit.utils.mockSingleFunction
+import uk.adbsalam.snapit.utils.mockkGifFun
 
 @RunWith(JUnit4::class)
 class KPFileTest : KPTest("kfile_test_case") {
@@ -131,6 +132,36 @@ class KPFileTest : KPTest("kfile_test_case") {
         ).build().toString()
 
         val actual = kspCodeFromFile("ks_file_component_dark_preview_imports")
+
+        Assert.assertEquals(file, actual)
+    }
+
+    @Test
+    fun `kFile - when gif annotation - and dark mode - should create correct file`() {
+
+        val file = kFile(
+            previewImports = true,
+            functions = mockkGifFun(false),
+            fileName = "TestFileComponentTest",
+            annotation = AnnotationType.LIGHT_GIF
+        ).build().toString()
+
+        val actual = kspCodeFromFile("ks_file_gif_light")
+
+        Assert.assertEquals(file, actual)
+    }
+
+    @Test
+    fun `kFile - when gif annotation and dark mode - should create correct file`() {
+
+        val file = kFile(
+            previewImports = true,
+            functions = mockkGifFun(true),
+            fileName = "TestFileComponentTest",
+            annotation = AnnotationType.DARK_GIF
+        ).build().toString()
+
+        val actual = kspCodeFromFile("ks_file_gif_dark")
 
         Assert.assertEquals(file, actual)
     }
