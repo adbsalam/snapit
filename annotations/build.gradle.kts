@@ -10,6 +10,6 @@ java {
 
 mavenPublishing {
     signAllPublications()
-    description = "Annotations library to provide @SnapIt annotation for Snapshot Testing"
+    description = "Annotations library to provide @SnapIt annotation for Snapshot Testing for components such as components, screens, dark and light modes, gifs"
 }
 
