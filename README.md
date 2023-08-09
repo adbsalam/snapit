@@ -4,7 +4,7 @@
 [SnapIt](https://central.sonatype.com/namespace/uk.adbsalam.snapit) auto test generation for [Paparazzi Compose](https://github.com/cashapp/paparazzi)
 
 
-![Maven Central](https://img.shields.io/badge/maven_central-1.0.3-blue)
+![Maven Central](https://img.shields.io/badge/maven_central-2.0.0-blue)
 
 ## Features
 
